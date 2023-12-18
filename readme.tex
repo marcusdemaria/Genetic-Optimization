@@ -1,0 +1,262 @@
+ocumentclass[12pt]{article}
+\usepackage{ragged2e} % load the package for justification
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\usepackage{filecontents}
+\usepackage{multirow}
+\usepackage{amsmath}
+\pgfplotsset{width=10cm,compat=1.17}
+\setlength{\parskip}{0.75em} % Set the space between paragraphs
+\usepackage{setspace}
+\setstretch{1.2} % Adjust the value as per your preference
+\usepackage[margin=2cm]{geometry} % Adjust the margin
+\setlength{\parindent}{0pt} % Adjust the value for starting paragraph
+\usetikzlibrary{arrows.meta}
+\usepackage{mdframed}
+\usepackage{float}
+
+\usepackage{hyperref}
+
+% to remove the hyperline rectangle
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor=blue
+}
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\usepackage{lipsum} % Example text package
+\usepackage{fancyhdr} % Package for customizing headers and footers
+
+
+
+% Define the orange color
+\definecolor{myorange}{RGB}{255,65,0}
+% Define a new color for "cherry" (dark red)
+\definecolor{cherry}{RGB}{148,0,25}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Apply the custom footer to all pages
+\pagestyle{fancy}
+
+% Redefine the header format
+\fancyhead{}
+\fancyhead[R]{\textcolor{orange!80!black}{\itshape\leftmark}}
+
+\fancyhead[L]{\textcolor{black}{\thepage}}
+
+
+% Redefine the footer format with a line before each footnote
+\fancyfoot{}
+\fancyfoot[C]{\footnotesize P. Pasandide, McMaster University, Programming for Mechatronics - MECHTRON 2MP3. \footnoterule}
+
+% Redefine the footnote rule
+\renewcommand{\footnoterule}{\vspace*{-3pt}\noindent\rule{0.0\columnwidth}{0.4pt}\vspace*{2.6pt}}
+
+% Set the header rule color to orange
+\renewcommand{\headrule}{\color{orange!80!black}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% Set the footer rule color to orange (optional)
+\renewcommand{\footrule}{\color{black}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Set the color for the section headings
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{orange!80!black}}{\thesection}{1em}{}
+
+% Set the color for the subsection headings
+\titleformat{\subsection}
+{\normalfont\large\bfseries\color{orange!80!black}}{\thesubsection}{1em}{}
+
+% Set the color for the subsubsection headings
+\titleformat{\subsubsection}
+{\normalfont\normalsize\bfseries\color{orange!80!black}}{\thesubsubsection}{1em}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set the color for the table of contents
+\titlecontents{section}
+[1.5em]{\color{orange!80!black}}
+{\contentslabel{1.5em}}
+{}{\titlerule*[0.5pc]{.}\contentspage}
+
+% Set the color for the subsections in the table of contents
+\titlecontents{subsection}
+[3.8em]{\color{orange!80!black}}
+{\contentslabel{2.3em}}
+{}{\titlerule*[0.5pc]{.}\contentspage}
+
+% Set the color for the subsubsections in the table of contents
+\titlecontents{subsubsection}
+[6em]{\color{orange!80!black}}
+{\contentslabel{3em}}
+{}{\titlerule*[0.5pc]{.}\contentspage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set a format for the codes inside a box with C format
+\lstset{
+	language=C,
+	basicstyle=\ttfamily,
+	backgroundcolor=\color{blue!5},
+	keywordstyle=\color{blue},
+	commentstyle=\color{codegreen},
+	stringstyle=\color{red},
+	showstringspaces=false,
+	breaklines=true,
+	frame=single,
+	rulecolor=\color{lightgray!35}, % Set the color of the frame
+	numbers=none,
+	numberstyle=\tiny,
+	numbersep=5pt,
+	tabsize=1,
+	morekeywords={include},
+	alsoletter={\#},
+	otherkeywords={\#}
+}
+
+
+
+
+%\input listings.tex
+
+
+
+% Define a command for inline code snippets with a colored and rounded box
+\newtcbox{\codebox}[1][gray]{on line, boxrule=0.2pt, colback=blue!5, colframe=#1, fontupper=\color{cherry}\ttfamily, arc=2pt, boxsep=0pt, left=2pt, right=2pt, top=3pt, bottom=2pt}
+
+
+
+
+\tikzset{%
+	every neuron/.style={
+		circle,
+		draw,
+		minimum size=1cm
+	},
+	neuron missing/.style={
+		draw=none, 
+		scale=4,
+		text height=0.333cm,
+		execute at begin node=\color{black}$\vdots$
+	},
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define a new tcolorbox style with default options
+\tcbset{
+	myboxstyle/.style={
+		colback=orange!10,
+		colframe=orange!80!black,
+	}
+}
+
+% Define a new tcolorbox style with default options to print the output with terminal style
+
+
+\tcbset{
+	myboxstyleTerminal/.style={
+		colback=blue!5,
+		frame empty, % Set frame to empty to remove the fram
+	}
+}
+
+\mdfdefinestyle{myboxstyleTerminal1}{
+	backgroundcolor=blue!5,
+	hidealllines=true, % Remove all lines (frame)
+	leftline=false,     % Add a left line
+}
+
+
+\begin{document}
+	
+	\justifying
+	
+	\begin{center}
+		\textbf{{\large <Mechatronics 2MP3 Assignment 2>}}
+		
+		\textbf{Developing a Basic Genetic Optimization Algorithm in C} 
+		
+		<Marcus De Maria>
+	\end{center}
+	
+
+	
+	
+	
+	\section{Introduction}
+	
+	
+	 
+	\begin{table}[h!]
+		\caption{Results with Crossover Rate = 0.5 and Mutation Rate = 0.05}
+		\label{table:1}
+		\centering
+		\begin{tabular}{c c c c c c}
+			\hline
+			Pop Size & Max Gen & \multicolumn{3}{c}{Best Solution} & CPU time (Sec) \\
+			& & $x_1$ & $x_2$ & Fitness & \\
+			\hline
+			10  & 100    &-0.013244  &0.085305  &0.431138 &0.000041\\
+			100 & 100    &-0.2786664  &-0.078655  &2.100787 &0.002362\\
+			1000& 100    &-0.004097  &0.098899  &0.520986 &0.022725\\
+			10000& 100    &-0.046203  &-0.010222  &0.192417 &0.225258\\
+			\hline
+			1000  & 1000   &-0.014522  &-0.022853 &0.096007 &0.243871\\
+			1000 & 10000  &-0.002328  &-0.002969  &0.011049 &2.258876\\
+			1000& 100000 &0.000671  &0.000951  &0.003329 &24.071972\\
+			1000& 1000000 &0.000025  &0.000096   &0.000096 &267.165445\\
+	      \hline
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[h!]
+		\caption{Results with Crossover Rate = 0.5 and Mutation Rate = 0.2}
+		\label{table:1}
+		\centering
+		\begin{tabular}{c c c c c c}
+			\hline
+			Pop Size & Max Gen & \multicolumn{3}{c}{Best Solution} & CPU time (Sec) \\
+			& & $x_1$ & $x_2$ & Fitness & \\
+			\hline
+			10  & 100    & 0.059030 & 0.065990  & 0.448721 &0.000400 \\
+			100 & 100    & -0.024179 & -0.025201 & 0.131000 &0.002626\\
+			1000& 100    &0.020239  &-0.074469  &0.369694 &0.025303\\
+			10000& 100    &-0.008048  &0.013263 &0.050277 &0.250076\\
+			\hline
+			1000  & 1000   &-0.005404 &-0.006352 &0.025440 &0.246751\\
+			1000 & 10000  &0.000733  &0.000510  &0.002546 &2.523743\\
+			1000& 100000 &-0.000876  &0.000205   &0.002566 &25.144203\\
+			1000& 1000000 &-0.000246  &0.000180  &0.000812 &254.309610\\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	
+	\subsection{Report and \codebox{Makefile} (3 points)}
+	
+    \textbf{Open up VSCode (or use Ubuntu and type "code ." to access WSL VSCode). Use "cd" to get to the correct directory in the terminal for "Assignment2". Compile the code using ./GA 1000 10000 0.5 0.1 1e-16, or by directly using the makefile by typing make in the terminal. A build automation tool called a makefile is used to control the process of compiling source code files and linking them into executable applications. They outline the rules for constructing the final executable in addition to the dependencies between various source and header files. The make utility runs the required compiler commands after reading the makefile to identify which parts of the code need to be recompiled. A makefile typically comprises of dependencies that indicate the relationships between source files and the finished result and rules that specify how the executable should be built. Typically, a rule consists of commands, dependencies, and a target. The file or action to be carried out is the target; files that the target depends on are called dependencies; and shell instructions are called commands used to build the target. The compiler (gcc) is represented by the CC variable in the example makefile that is provided; compiler flags like -Wall and -Wextra are included in CFLAGS; source files are listed in SOURCES; object files to be generated are specified in OBJECTS; the name of the final program is EXECUTABLE; and the math library (-lm) is included in LIBS. The executable is dependent upon the object files, which are dependent of the entire target. The created files are removed by the clean target, and the rule for object files describes how to compile source files into objects. The make command in the terminal can be used to build the program; it will compile the source code and create the executable automatically. Only files that have changed since the last build are recompiled by the make tool, which also examines dependencies and helps in efficient code development.}
+	
+	\subsection{Improving the Performance - Bonus (+1 points)}
+		
+	
+	\subsection{Bonus (+3 points) - Only the fastest program!}
+
+	
+	
+\end{document}
