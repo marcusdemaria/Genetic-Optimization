@@ -43,7 +43,7 @@ In two-point crossover, two random points are selected for the exchange. <br> <b
 
 # Results and Report
 
-By downloading the various files and running required code, results were generated and documented in the PDF file - readme.tex <br> <br>
+By downloading the various files and running required code, results were generated and documented in the PDF file - readme.pdf <br> <br>
 
 GA.c : The file GA.c , is the main code you have and based on what you need, you can all
 the function in int main(int argc, char *argv[]) . The specifications of the algorithm
